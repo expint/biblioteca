@@ -1,0 +1,36 @@
+html {
+  background-color: #c9c9ff;
+}
+
+.first-section {
+  background-color: #8787ff;
+}
+
+.card {
+  max-width: 15rem;
+  margin: 3rem;
+}
+
+.numero {
+  display: block;
+  background: linear-gradient(to bottom, rgba(0,5,54,1), rgba(0,5,54,0.5));
+  max-width: 10rem;
+}
+
+.numero:hover {
+  color: orange;
+}
+
+.layer-section {
+  padding: 30px;
+  padding-bottom: 100px;
+}
+
+.voce, .voce>div {
+  padding: 5px;
+}
+
+.hrVoce {
+  margin: 0;
+}
+

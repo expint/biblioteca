@@ -1,0 +1,52 @@
+
+.a-home {
+  position:relative;
+  height: 250px;
+}
+
+.a-home:hover span {
+  text-decoration: underline;
+}
+
+.a-home:active span {
+  text-decoration: underline;
+  color: #2200CC;
+}
+
+.a-home:hover .img-home-content {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#avvisi {
+ padding: 50px 0 0; margin: -50px 0 0;
+}
+
+.card {
+  padding:0;
+  border: 1px solid brown;
+  border-radius: 0;
+}
+
+.card-header:first-child {
+  background-color: brown;
+  color: white;
+  border-radius: 0;
+}
+
+.img-home-content {
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 150px;
+  color: white;
+  height: 200px;
+  left: 0;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition: background-color 0.5s;
+  width: 100%;
+}
+
+.layer-section {
+  padding-top: 60px;
+}

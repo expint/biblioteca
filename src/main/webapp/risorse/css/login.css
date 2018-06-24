@@ -1,0 +1,14 @@
+.layer-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.login {
+  border: 1px solid brown;
+  background-color: white;
+  padding: 20px;
+}
+
+.registrati {
+  display:none;
+}
