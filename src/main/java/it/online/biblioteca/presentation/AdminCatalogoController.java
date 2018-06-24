@@ -52,7 +52,7 @@ public class AdminCatalogoController {
 		boolean prev = false;
 		int pagineTotali = 0;
 			
-		pagineTotali = catalogoDao.quantePagine(15);
+		pagineTotali = catalogoDao.quantePagine(Catalogo.ADMIN_PAGINATION);
 		
 		Integer pagina = null;
 		
@@ -101,7 +101,7 @@ public class AdminCatalogoController {
 		List<Integer> idLibri = null;
 		
 		pagina = this.gestionePagine(model, request);	
-		idLibri = catalogoDao.quantiLibri(pagina, 15);
+		idLibri = catalogoDao.quantiLibri(pagina, Catalogo.ADMIN_PAGINATION);
 		
 		Map<Catalogo, Integer> tuttilibri = new HashMap<>();
 		for (Integer i: idLibri) {

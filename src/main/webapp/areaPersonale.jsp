@@ -51,6 +51,9 @@
         <div class="card accordion col-lg-8 mx-auto">
           <button class="btn btn-lg btn-block btn-success" value="0">Prenotazioni attive<span class="badge accordionBadge">&#9660;</span></button>
           <div class="card-body" id="libri">
+          <c:if test="${empty attive}">
+            <p class="lead">Nessuna prenotazione attiva</p>
+          </c:if>
             <c:forEach var="attive" items="${attive}">
         <div class="libro">
           <img src="img/books/${attive.catalogo.libro.isbn}.jpg" class="copertina" alt="${attive.catalogo.libro.titolo} - ${attive.catalogo.libro.autore}" title="${attive.catalogo.libro.titolo} - ${attive.catalogo.libro.autore}" data-isbn="${attive.catalogo.libro.isbn}">
@@ -72,12 +75,17 @@
             <div class="row">
               <div class="col-2">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                
                   <c:forEach var="mappa" items="${mappa}">
                    <a class="nav-link center" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-${mappa.key}" role="tab" aria-controls="v-pills-profile" aria-selected="false">${mappa.key}</a>
                   </c:forEach>
                 </div>
               </div>
               <div class="col-10 contenuto">
+                <c:if test="${empty mappa}">
+                  <p class="lead">Nessuna prenotazione recente</p>
+                </c:if>
+                <c:if test="${!empty mappa}">
                 <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" role="tabpanel">Clicca sulle date</div>
                   <c:forEach var="mappa" items="${mappa}">
@@ -121,6 +129,7 @@
                   </div>
                         </c:forEach>
                 </div>
+                </c:if>
               </div>
             </div>
           </div>

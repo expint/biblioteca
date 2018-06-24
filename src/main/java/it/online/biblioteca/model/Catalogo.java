@@ -10,6 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="catalogo")
 public class Catalogo {
+	public static final int PAGINATION = 8;	
+	public static final int ADMIN_PAGINATION = 15;	
+	
 	@Id
 	@GeneratedValue
 	private int id;

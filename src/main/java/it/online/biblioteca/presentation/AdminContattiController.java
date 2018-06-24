@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import it.online.biblioteca.model.Catalogo;
 import it.online.biblioteca.model.Contatto;
 import it.online.biblioteca.model.Messaggio;
 import it.online.biblioteca.model.Utente;
@@ -38,7 +39,7 @@ public class AdminContattiController {
 		boolean prev = false;
 		int pagineTotali = 0;
 			
-		pagineTotali = contattoDao.quantePagine(15);			
+		pagineTotali = contattoDao.quantePagine(Catalogo.ADMIN_PAGINATION);			
 
 		
 		Integer pagina = null;
@@ -90,7 +91,7 @@ public class AdminContattiController {
 		List<Integer> idContact = null;
 		
 		pagina = this.gestionePagine(model, request);	
-		idContact = contattoDao.quantiContatti(pagina, 15);
+		idContact = contattoDao.quantiContatti(pagina, Catalogo.ADMIN_PAGINATION);
 		
 		for (Integer i: idContact) {
 			Contatto contatto = contattoDao.read(i);

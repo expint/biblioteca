@@ -46,10 +46,10 @@ public class AdminPrenotazioniController {
 		int pagineTotali = 0;
 			
 		if (idUtente==0) {
-			pagineTotali = prenotazioneDao.quantePagine(15);			
+			pagineTotali = prenotazioneDao.quantePagine(Catalogo.ADMIN_PAGINATION);			
 		}
 		else {
-			pagineTotali = prenotazioneDao.quantePaginePerUtente(15, idUtente);
+			pagineTotali = prenotazioneDao.quantePaginePerUtente(Catalogo.ADMIN_PAGINATION, idUtente);
 		}
 		
 		Integer pagina = null;
@@ -101,7 +101,7 @@ public class AdminPrenotazioniController {
 		List<Integer> idPrenot = null;
 		
 		pagina = this.gestionePagine(model, request, 0);	
-		idPrenot = prenotazioneDao.quantePrenotazioniAttive(pagina, 15);
+		idPrenot = prenotazioneDao.quantePrenotazioniAttive(pagina, Catalogo.ADMIN_PAGINATION);
 		
 		for (Integer i: idPrenot) {
 			Prenotazione prenotazione = prenotazioneDao.read(i);
@@ -129,7 +129,7 @@ public class AdminPrenotazioniController {
 		List<Integer> idPrenot = null;
 		
 		pagina = this.gestionePagine(model, request, 0);	
-		idPrenot = prenotazioneDao.quantePrenotazioni(pagina, 15);
+		idPrenot = prenotazioneDao.quantePrenotazioni(pagina, Catalogo.ADMIN_PAGINATION);
 		
 		for (Integer i: idPrenot) {
 			Prenotazione prenotazione = prenotazioneDao.read(i);
@@ -157,7 +157,7 @@ public class AdminPrenotazioniController {
 		List<Integer> idPrenot = null;
 		
 		pagina = this.gestionePagine(model, request, idUtente);	
-		idPrenot = prenotazioneDao.quantePrenotazioniPerUtente(pagina, 15, idUtente);
+		idPrenot = prenotazioneDao.quantePrenotazioniPerUtente(pagina, Catalogo.ADMIN_PAGINATION, idUtente);
 		
 		for (Integer i: idPrenot) {
 			Prenotazione prenotazione = prenotazioneDao.read(i);

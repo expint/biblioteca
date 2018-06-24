@@ -48,19 +48,19 @@ public class CatalogoUserController {
 		int pagineTotali = 0;
 		
 		if (search.equals("")) {			
-			pagineTotali = catalogoDao.quantePagine(8);
+			pagineTotali = catalogoDao.quantePagine(Catalogo.PAGINATION);
 		}
 		else if (search.equals("titolo")) {
-			pagineTotali = catalogoDao.quantePagineTitolo(request.getParameter(search), 8);
+			pagineTotali = catalogoDao.quantePagineTitolo(request.getParameter(search), Catalogo.PAGINATION);
 		}
 		else if (search.equals("autore")) {
-			pagineTotali = catalogoDao.quantePagineAutore(request.getParameter(search), 8);
+			pagineTotali = catalogoDao.quantePagineAutore(request.getParameter(search), Catalogo.PAGINATION);
 		}
 		else if (search.equals("genere")) {
-			pagineTotali = catalogoDao.quantePagineGenere(request.getParameter(search), 8);
+			pagineTotali = catalogoDao.quantePagineGenere(request.getParameter(search), Catalogo.PAGINATION);
 		}
 		else if (search.equals("isbn")) {
-			pagineTotali = catalogoDao.quantePagineISBN(request.getParameter(search), 8);
+			pagineTotali = catalogoDao.quantePagineISBN(request.getParameter(search), Catalogo.PAGINATION);
 		}
 		
 		Integer pagina = null;
@@ -113,27 +113,27 @@ public class CatalogoUserController {
 		
 		if (titolo!=null && !titolo.equals("")) {
 			pagina = this.gestionePagine(model, request, "titolo");
-			idLibri = catalogoDao.libriPerTitolo(pagina, titolo, 8);
+			idLibri = catalogoDao.libriPerTitolo(pagina, titolo, Catalogo.PAGINATION);
 			search = "titolo="+titolo;
 		}
 		else if (autore!=null && !autore.equals("")) {
 			pagina = this.gestionePagine(model, request, "autore");
-			idLibri = catalogoDao.libriPerAutore(pagina, autore, 8);
+			idLibri = catalogoDao.libriPerAutore(pagina, autore, Catalogo.PAGINATION);
 			search = "autore="+autore;
 		}
 		else if (genere!=null && !genere.equals("")) {
 			pagina = this.gestionePagine(model, request, "genere");
-			idLibri = catalogoDao.libriPerGenere(pagina, genere, 8);
+			idLibri = catalogoDao.libriPerGenere(pagina, genere, Catalogo.PAGINATION);
 			search = "genere="+genere;
 		}
 		else if (isbn!=null && !isbn.equals("")) {
 			pagina = this.gestionePagine(model, request, "isbn");
-			idLibri = catalogoDao.libriPerISBN(pagina, isbn, 8);
+			idLibri = catalogoDao.libriPerISBN(pagina, isbn, Catalogo.PAGINATION);
 			search = "isbn="+isbn;
 		}
 		else {
 			pagina = this.gestionePagine(model, request, "");	
-			idLibri = catalogoDao.quantiLibri(pagina, 8);
+			idLibri = catalogoDao.quantiLibri(pagina, Catalogo.PAGINATION);
 		}
 		
 		if (idLibri==null || idLibri.isEmpty()) {
