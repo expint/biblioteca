@@ -3,8 +3,9 @@
 ### Eclipse ###
 
 **/risorse/img/books/
-**/CaricaCatalogo.java
-**/CaricaStatoUtente.java
+**/resources/*.csv
+**/README.md
+**/LICENSE
 
 .metadata
 bin/

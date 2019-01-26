@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import it.online.biblioteca.model.StatoUtente;
+import it.online.biblioteca.utility.Costanti;
 
 @Transactional
 public class StatoUtenteDao implements Dao<StatoUtente> {
@@ -15,6 +16,14 @@ public class StatoUtenteDao implements Dao<StatoUtente> {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	
+	public void loadData() {	
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("LOAD DATA INFILE :filename INTO TABLE statoutenti FIELDS TERMINATED BY ';' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (utente, stato, @dataInizio, @dataFine) "
+				+ "SET dataInizio = CASE WHEN @dataInizio = \'null\' THEN null ELSE now() + interval @dataInizio minute END, " 
+				+ "dataFine = CASE WHEN @dataFine = 'null' THEN null ELSE now() + interval @dataFine minute END;");
+		query.setString("filename", Costanti.RESOURCES_PATH+"statoUtenti.csv");
+		query.executeUpdate();
 	}
 	
 	@SuppressWarnings("unchecked")

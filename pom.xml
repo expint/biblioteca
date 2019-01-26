@@ -4,9 +4,9 @@
 	<groupId>it.online</groupId>
 	<artifactId>biblioteca</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>biblioteca Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<version>1.1.0</version>
+	<name>Biblioteca Online</name>
+	<url>https://github.com/expint/biblioteca.git</url>
 
 	<properties>
 		<maven.compiler.source>9</maven.compiler.source>
@@ -77,7 +77,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.5</version>
+			<version>2.9.8</version>
 		</dependency>
 	</dependencies>
 	<build>

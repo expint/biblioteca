@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name="utenti")
 public class Utente {
@@ -15,6 +17,7 @@ public class Utente {
 	private String cognome;
 	private String mail;
 	private String password;
+	@Type (type = "numeric_boolean")
 	private boolean admin;
 	
 	public int getId() {

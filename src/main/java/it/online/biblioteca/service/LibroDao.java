@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import it.online.biblioteca.model.Libro;
+import it.online.biblioteca.utility.Costanti;
 
 @Transactional
 public class LibroDao implements Dao<Libro> {
@@ -14,6 +16,12 @@ public class LibroDao implements Dao<Libro> {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	
+	public void loadData() {	
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("LOAD DATA INFILE :filename INTO TABLE libri FIELDS TERMINATED BY ';' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (titolo, autore, editore, anno, isbn, genere);");
+		query.setString("filename", Costanti.RESOURCES_PATH+"elencoLibri.csv");
+		query.executeUpdate();
 	}
 	
 	@SuppressWarnings("unchecked")

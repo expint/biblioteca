@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import it.online.biblioteca.model.Utente;
+import it.online.biblioteca.utility.Costanti;
 
 @Transactional
 public class UtenteDao implements Dao<Utente> {
@@ -15,6 +16,12 @@ public class UtenteDao implements Dao<Utente> {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	
+	public void loadData() {	
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("LOAD DATA INFILE :filename INTO TABLE utenti FIELDS TERMINATED BY ';' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (nome, cognome, mail, password, admin);");
+		query.setString("filename", Costanti.RESOURCES_PATH+"utenti.csv");
+		query.executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")

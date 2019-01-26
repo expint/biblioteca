@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 
 import it.online.biblioteca.model.Catalogo;
 import it.online.biblioteca.model.Prenotazione;
+import it.online.biblioteca.utility.Costanti;
 
 @Transactional
 public class PrenotazioneDao implements Dao<Prenotazione>{
@@ -20,6 +21,15 @@ public class PrenotazioneDao implements Dao<Prenotazione>{
 		this.sessionFactory = sessionFactory;
 	}
 
+	public void loadData() {	
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("LOAD DATA INFILE :filename INTO TABLE prenotazioni FIELDS TERMINATED BY ';' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (utente, copia, @dataPrenotazione, @dataScadenza, @dataConsegna, stato) "
+				+ "SET dataPrenotazione = CASE WHEN @dataPrenotazione = 'null' THEN null ELSE now() + interval @dataPrenotazione day END, "
+				+ "dataScadenza = CASE WHEN @dataScadenza = 'null' THEN null ELSE dataPrenotazione + interval @dataScadenza month END, "
+				+ "dataConsegna = CASE WHEN @dataConsegna = 'null' THEN null ELSE dataScadenza + interval @dataInizio day END;");
+		query.setString("filename", Costanti.RESOURCES_PATH+"prenotazioni.csv");
+		query.executeUpdate();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Prenotazione> readAll() {

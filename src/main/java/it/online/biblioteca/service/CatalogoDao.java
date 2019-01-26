@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import it.online.biblioteca.model.Catalogo;
+import it.online.biblioteca.utility.Costanti;
 
 @Transactional
 public class CatalogoDao implements Dao<Catalogo>{
@@ -17,6 +18,12 @@ public class CatalogoDao implements Dao<Catalogo>{
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	
+	public void loadData() {	
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("LOAD DATA INFILE :filename INTO TABLE catalogo FIELDS TERMINATED BY ';' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (libro, classificazione, stato);");
+		query.setString("filename", Costanti.RESOURCES_PATH+"catalogo.csv");
+		query.executeUpdate();
 	}
 	
 	@SuppressWarnings("unchecked")
